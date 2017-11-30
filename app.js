@@ -42,8 +42,8 @@ app.use(morgan('tiny'));
 
 //Load all the routes in the directory
 fs.readdirSync('./routes').forEach(function(file) {
-	if (path.extname(file) =='.js') {
-		require('./routes/' + file).init(app, passport);
+	if (path.extname(file) =='.js' && file != 'serverSocket.js') {
+		require('./routes/' + file).init(app);
 	}
 });
 
@@ -57,7 +57,12 @@ app.use(function(request, response) {
 })
 
 var httpServer = require('http').createServer(app);
+var sio = require('socket.io');
+var io = sio(httpServer);
 
 httpServer.listen(3000, function() {
 	console.log('listening on port 3000');
 })
+
+var streamSockets = require('./routes/serverSocket.js');
+streamSockets.init(io);
