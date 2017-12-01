@@ -24,7 +24,9 @@ viewer = function(req,res) {
 }
 
 scrape = function(req,res) {
-    ///scrape/https%3A%2F%2Fwww.crowdrise.com%2Finternational-day-of-the-girl
+    /* only supports the below path currently:
+        /scrape/https%3A%2F%2Fwww.crowdrise.com%2Finternational-day-of-the-girl
+    */
     var url =req.params.path
     console.log("url", url)
     request(url, function(error, response, html){
@@ -50,10 +52,6 @@ scrape = function(req,res) {
            res.send(json)
            console.log('json sent')
         
-        
- 
-           // assume most recent on top
-        //    console.log(html)
        }
     })
    
