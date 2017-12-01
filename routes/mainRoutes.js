@@ -29,12 +29,31 @@ scrape = function(req,res) {
     console.log("url", url)
     request(url, function(error, response, html){
        if(!error) {
-           var $ = cheerio.load(html);
-           var name, amount
-           var json = { name : "", amount : ""};
+            var $ = cheerio.load(html);
+            var donors
+            var json = {donors: []}
+            namesSel = $('#donor_list span.left p')
+            amountsSel = $('#donor_list span.right p')
+            
+            
+            for(i=0; i<namesSel.length; i++){
+            
+            var name = namesSel[i].firstChild.data
+            var amount = amountsSel[i].firstChild.data
+            var donor = { name:name, amount:amount}
 
+            json.donors.push(donor)
+           }
+
+
+           // turn amounts to integer
+           res.send(json)
+           console.log('json sent')
+        
+        
+ 
            // assume most recent on top
-           console.log(html)
+        //    console.log(html)
        }
     })
    
