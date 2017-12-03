@@ -14,6 +14,9 @@ exports.init = function(io) {
             */
             socket.broadcast.emit('users_connected', {number: currentUsers});
 
+            socket.on('toggle-timer', function(data){
+                console.log('toggle timer', data.event)
+            })
 
             socket.on('message', function(data){
                 console.log('data.message', data.message)
@@ -26,6 +29,6 @@ exports.init = function(io) {
                 socket.broadcast.emit('users_connected', {number: currentUsers});
             })
         });
-
+ 
 
 }
