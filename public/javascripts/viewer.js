@@ -11,7 +11,7 @@ socket.on('toggle-timer', function(event){
 
 $(function(){
     // make ajax request
-    $('#countdown').countdown('2017/12/15', function(event){
+    $('#timer').countdown('2017/12/15', function(event){
         $(this).html(event.strftime('%w weeks %d days %H:%M:%S'));
     })
     $.ajax({
