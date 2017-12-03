@@ -18,6 +18,10 @@ socket.on('toggle-top-donors', function(event){
     $('#top-donors').toggle();
 })
 
+socket.on('toggle-recent-donors', function(event){
+    $('#recent-donors').toggle();
+})
+
 socket.on('toggle-goal', function(event){
     $('#goal').toggle();
 })
@@ -55,12 +59,12 @@ $(function(){
                         ${result.donors[i].name}
                         </p>
                         `
-                $('#recent-donators').append(recent_donors);
+                $('#recent-donors').append(recent_donors);
 
                 var top_donators = `<p>
                                     ${top_donors.donors[i].name}: ${top_donors.donors[i].amount}
                                   </p>`
-                $('#top-donators').append(top_donators);
+                $('#top-donors').append(top_donators);
                 
             }
 

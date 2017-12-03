@@ -55,6 +55,11 @@ exports.init = function(io) {
                 socket.broadcast.emit('toggle-top-donors', {event:'toggle-top-donors'})
             })
 
+            socket.on('toggle-recent-donors', function(data){
+                socket.emit('toggle-recent-donors', {events: 'toggle-recent-donors'})
+                socket.broadcast.emit('toggle-recent-donors', {event: 'toggle-recent-donors'})
+            })
+
             socket.on('toggle-goal', function(data){
                 // emit event to viewer
                 socket.emit('toggle-goal', {events:'toggle-goal'})

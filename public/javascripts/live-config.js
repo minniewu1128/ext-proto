@@ -54,4 +54,17 @@ $(function(){
         console.log('emitted top donor event')
     })
 
+    $('button.recent-donors').click(function(event){
+        
+        if($('button.recent-donors').hasClass('is-primary')){
+            $('button.recent-donors').text('Recent Donors: Off')
+        }
+        else{
+            $('button.recent-donors').text('Recent Donors: On')
+        }
+        $('button.recent-donors').toggleClass('is-primary')
+        socket.emit('toggle-recent-donors', {event: 'toggle recent donors'})
+        console.log('emitted recent donor event')
+    })
+
 })
