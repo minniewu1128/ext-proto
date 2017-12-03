@@ -1,3 +1,14 @@
+// socket things
+var socket = io.connect('/')
+var viewer = io.connect('/viewer')
+console.log('viewer connected', io)
+
+socket.on('toggle-timer', function(event){
+    console.log('toggle timer event detected')
+    $('#timer').toggle();
+
+})
+
 $(function(){
     // make ajax request
     $('#countdown').countdown('2017/12/15', function(event){
