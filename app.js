@@ -10,6 +10,7 @@ var session = require('express-session');
 var flash = require('connect-flash');
 
 
+
 // var passport = require('passport');
 // require('./config/passport').init(passport);
 // read cookies (needed for auth)

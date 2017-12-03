@@ -1,5 +1,8 @@
 $(function(){
     // make ajax request
+    $('#countdown').countdown('2017/12/15', function(event){
+        $(this).html(event.strftime('%w weeks %d days %H:%M:%S'));
+    })
     $.ajax({
         url: "/scrape/https%3A%2F%2Fwww.crowdrise.com%2Finternational-day-of-the-girl",
         type: 'GET',
