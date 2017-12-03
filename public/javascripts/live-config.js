@@ -7,17 +7,51 @@ $(function(){
         
         if($('button.timer').hasClass('is-primary')){
            // timer is on
-            $('button.timer').text('Timer: Off');
-            }
+            $('button.timer').text('Timer: Off');}
         else{
-            $('button.timer').text('Timer: On');
-            }
+            $('button.timer').text('Timer: On');}
         $('button.timer').toggleClass('is-primary')
-    //    else(){
-    //        $
-    //    }
        socket.emit('toggle-timer',{event: 'toggle timer'} )
-       console.log('emitted timer event')
-        
+       console.log('emitted timer event')  
        })
+
+    $('button.money-raised').click(function(event){
+    
+            if($('button.money-raised').hasClass('is-primary')){
+                $('button.money-raised').text('Money Raised: Off')
+            }
+            else{
+                $('button.money-raised').text('Money Raised: On')
+            }
+            $('button.money-raised').toggleClass('is-primary')
+            socket.emit('toggle-money-raised', {event: 'toggle money'})
+            console.log('emitted money raised')
+        })
+
+    $('button.goal').click(function(event){
+        //logic to submit form
+        if($('button.goal').hasClass('is-primary')){
+            $('button.goal').text('Goal: Off')
+        }
+        else{
+            $('button.goal').text('Goal: On')
+        }
+        $('button.goal').toggleClass('is-primary')
+        socket.emit('toggle-goal', {event: 'toggle goal'})
+        console.log('emitted goal')
+    })
+    
+    $('button.top-donors').click(function(event){
+
+        if($('button.top-donors').hasClass('is-primary')){
+            $('button.top-donors').text('Top Donors: Off')
+        }
+        else{
+            $('button.top-donors').text('Top Donors: On')
+        }
+        $('button.top-donors').toggleClass('is-primary')
+        socket.emit('toggle-top-donors', {event: 'toggle top donors'})
+        console.log('emitted top donor event')
+    })
+
 })

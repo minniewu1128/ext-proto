@@ -23,11 +23,16 @@
             </div>
 
             <div class="tile is-vertical is-4" style="height: 100%">
-              <p>Column 2</p>
-              <div class="tile is-child box">
-                <p>Goal: $25,000.00
-                   Raised: $23,000.00
-                </p>
+        
+              <div class="tile is-vertical is-parent overlay">
+                <div class="tile is-child box" style="display:none" id="money-raised">
+                    <p class="money-raised">Raised: $23,000.00</p>
+                </div>
+                <div class="tile is-child box" style="display:none" id="goal">
+                    <p class="goal">Goal: $25,000.00 </p>
+                </div>
+                
+                
               </div>
             </div>
             <div class="tile is-parent is-5 is-vertical">
@@ -41,18 +46,18 @@
 
 
               <div class="tile is-parent is-7 is-vertical">
-                  <button class="button more-info-button is-primary">More Info</button>
+                  <!-- stream overlay is default on -->
+                <button class="button overlay-control is-primary">Stream Overlay On</button>
                 <div class="tile is-child box donator-info" id="top-donators">
-                  <h2>Top Donators:</h2>
+                  <h2>Top Donors:</h2>
                 </div>
                 
                 <div class="tile is-child box donator-info" id="recent-donators">
-                <h2>Recent Donators</h2>
+                <h2>Recent Donors</h2>
                 </div>
               </div>
               </div>
 
-              
               <div class="tile is-child is-12 box">
                 <p>
                   Donating at: https://www.crowdrise.com/international-day-of-the-girl </p>

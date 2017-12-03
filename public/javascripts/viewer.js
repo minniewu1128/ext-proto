@@ -9,6 +9,18 @@ socket.on('toggle-timer', function(event){
 
 })
 
+socket.on('toggle-money-raised', function(event){
+    console.log('toggle money raised detected')
+    $('#money-raised').toggle();
+})
+
+socket.on('toggle-top-donors', function(event){
+    $('#top-donors').toggle();
+})
+
+socket.on('toggle-goal', function(event){
+    $('#goal').toggle();
+})
 $(function(){
     // make ajax request
     $('#timer').countdown('2017/12/15', function(event){
@@ -57,9 +69,17 @@ $(function(){
     })
         
     
-    $('.donator-info').hide();
-    $('button.more-info-button').click(function(event){
+    $('button.overlay-control').click(function(event){
+        if($('button.overlay-control').hasClass('is-primary')){
+            $('button.overlay-control').text('Stream Overlay: Off')
+        }
+        else{
+            $('button.overlay-control').text('Stream Overlay: On')
+        }
         $('.donator-info').toggle();
+        $('.timer').toggle();
+        $('.overlay').toggle();
+        $('button.overlay-control').toggleClass('is-primary')
     })
 })
 

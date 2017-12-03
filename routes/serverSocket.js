@@ -43,6 +43,25 @@ exports.init = function(io) {
                 socket.broadcast.emit('toggle-timer', {event:'toggle-timer'})
             })
 
+            socket.on('toggle-money-raised', function(data){
+                // emit event to viewer
+                socket.emit('toggle-money-raised', {events:'toggle-money-raised'})
+                socket.broadcast.emit('toggle-money-raised', {event:'toggle-money-raised'})
+            })
+
+            socket.on('toggle-top-donors', function(data){
+                // emit event to viewer
+                socket.emit('toggle-top-donors', {events:'toggle-top-donors'})
+                socket.broadcast.emit('toggle-top-donors', {event:'toggle-top-donors'})
+            })
+
+            socket.on('toggle-goal', function(data){
+                // emit event to viewer
+                socket.emit('toggle-goal', {events:'toggle-goal'})
+                socket.broadcast.emit('toggle-goal', {event:'toggle-goal'})
+            })
+
+
             socket.on('message', function(data){
                 console.log('data.message', data.message)
                 socket.emit('message', data);
