@@ -180,7 +180,7 @@ $(function(){
         
     
     $('button.overlay-control').click(function(event){
-        
+        // if overlay is on, clicking it turns it off and hides everything
         if($('button.overlay-control').hasClass('is-primary')){
             $('button.overlay-control').text('Stream Overlay: Off')
             $('#top-donors').hide();
@@ -193,9 +193,9 @@ $(function(){
             
         }
         else{
-            // turn on overlay
+            // if overlay is off, clicking turns it on and shows the components that the streamer
+            // wants to display
             $('button.overlay-control').text('Stream Overlay: On')
-            //only toggle components that have config-on class set by the streamer
             if ($('#top-donors').hasClass('config-on')){
                 $('#top-donors').show();
             }
@@ -211,10 +211,10 @@ $(function(){
             if($('.goal').hasClass('config-on')){
                 $('.goal').show(); }
             if($('.money-raised').hasClass('config-on')){
-                $('.money-raised').show()
-                
+                $('.money-raised').show();       
             }       
             }
+        
         $('button.overlay-control').toggleClass('is-primary')
 
         

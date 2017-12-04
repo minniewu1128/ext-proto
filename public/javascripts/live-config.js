@@ -27,6 +27,7 @@ $(function(){
 
     $('button.set-timer').click(function(event){
         var dateTime = $('input.time-select').val();
+        $('input.time-select').placeholder = dateTime;
         socket.emit('set-timer', {dateTime: dateTime});
         console.log('emitted set timer event')
     })
@@ -38,6 +39,7 @@ $(function(){
         else{
             $('button.toggle-stream-info').text('Stream Information: On')
         }
+        $('button.toggle-stream-info').toggleClass('is-primary')
         socket.emit('toggle-stream-info', {event: 'toggle stream'})
         console.log('emitted toggle stream information event')
     })
