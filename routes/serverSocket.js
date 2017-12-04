@@ -59,6 +59,12 @@ exports.init = function(io) {
                 socket.broadcast.emit('toggle-timer', {event:'toggle-timer'})
             })
 
+            socket.on('toggle-stream-info', function(data){
+                console.log('toggle stream info in io.sockets')
+                socket.emit('toggle-stream-info', data);
+                socket.broadcast.emit('toggle-stream-info', data);
+            })
+
             socket.on('toggle-money-raised', function(data){
                 // emit event to viewer
                 socket.emit('toggle-money-raised', {events:'toggle-money-raised'})

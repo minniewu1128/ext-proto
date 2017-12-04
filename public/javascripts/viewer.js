@@ -6,26 +6,62 @@ console.log('viewer connected', io)
 socket.on('toggle-timer', function(event){
     console.log('toggle timer event detected')
     $('.timer').toggleClass('config-on');
-
+    if($('.timer').hasClass('config-on') && $('button.overlay-control').hasClass('is-primary')){
+        $('.timer').show();
+    }
+    else($('.timer').hide());
 })
 
 socket.on('toggle-money-raised', function(event){
-    console.log('toggle money raised detected')
-    $('#money-raised').toggleClass('config-on');
+    $('.money-raised').toggleClass('config-on');
+    if($('.money-raised').hasClass('config-on') && $('button.overlay-control').hasClass('is-primary')){
+        console.log('turn money raised on')
+        $('.money-raised').show();
+    }
+    else{
+        $('.money-raised').hide();
+    }
 })
 
 socket.on('toggle-top-donors', function(event){
     $('#top-donors').toggleClass('config-on');
+    if($('#top-donors').hasClass('config-on') && $('button.overlay-control').hasClass('is-primary')){
+        $('#top-donors').show();
+    }
+    else($('#top-donors').hide());
 })
 
 socket.on('toggle-recent-donors', function(event){
     $('#recent-donors').toggleClass('config-on');
+    if($('#recent-donors').hasClass('config-on') && $('button.overlay-control').hasClass('is-primary')){
+        $('#recent-donors').show();
+    }
+    else{
+        $('#recent-donors').hide()
+    };
 })
 
 socket.on('toggle-goal', function(event){
-    $('#goal').toggleClass('config-on');
+    $('.goal').toggleClass('config-on');
+    if($('.goal').hasClass('config-on') && $('button.overlay-control').hasClass('is-primary')){
+        console.log('turn goal on')
+        $('.goal').show();
+    }
+    else{
+        $('.goal').hide()
+    };
 })
 
+socket.on('toggle-stream-info', function(event){
+    $('.stream-info').toggleClass('config-on');
+    $('.stream-info').toggleClass('box')
+    if($('.stream-info').hasClass('config-on') && $('button.overlay-control').hasClass('is-primary')){
+        $('.stream-info').show();
+    }
+    else {
+        $('.stream-info').hide();
+    };
+})
 
 
 socket.on('set-stream-info', function(event){
@@ -43,15 +79,51 @@ socket.on('set-goal', function(event){
 $(function(){
     //assume overlay is off in the begging, hide all components
     if($('button.overlay-control').hasClass('is-primary')){
-        if($('#money-raised').hasClass('config-on')){
-            $('.money-raised').show();
+        if ($('#top-donors').hasClass('config-on')){
+            $('#top-donors').show();
         }
         else{
+            $('#top-donors').hide();
+        }
+        if ($('#recent-donors').hasClass('config-on')){
+            $('#recent-donors').show();
+        }
+        else{
+            $('#recent-donors').hide();
+        }
+        if($('.timer').hasClass('config-on')){
+            $('.timer').show();
+        }
+        else{
+            $('.timer').hide();
+        }
+        if($('.stream-info').hasClass('config-on')){
+            $('.stream-info').show();
+        }
+        else{
+            $('.streamer-info').hide();
+        }
+        if($('.goal').hasClass('config-on')){
+            $('.goal').show(); }
+        else{
+            $('.goal').hide();
+        }
+
+        if($('.money-raised').hasClass('config-on')){
+            $('.money-raised').show()
+        }
+        else {
             $('.money-raised').hide();
         }
     }
     else {
+        console.log('big else hide statement')
         $('.money-raised').hide();
+        $('.timer').hide();
+        $('#top-donors').hide();
+        $('#recent-donors').hide();
+        $('stream-info').hide();
+        $('.goal').hide();
     }
 
     
@@ -111,7 +183,8 @@ $(function(){
         
         if($('button.overlay-control').hasClass('is-primary')){
             $('button.overlay-control').text('Stream Overlay: Off')
-            $('.donator-info').hide();
+            $('#top-donors').hide();
+            $('#recent-donors').hide();
             $('.timer').hide();
             $('.stream-info').hide();
             $('.goal').hide();
@@ -123,8 +196,11 @@ $(function(){
             // turn on overlay
             $('button.overlay-control').text('Stream Overlay: On')
             //only toggle components that have config-on class set by the streamer
-            if ($('.donator-info').hasClass('config-on')){
-                $('.donator-info').show();
+            if ($('#top-donors').hasClass('config-on')){
+                $('#top-donors').show();
+            }
+            if ($('#recent-donors').hasClass('config-on')){
+                $('#recent-donors').show();
             }
             if($('.timer').hasClass('config-on')){
                 $('.timer').show();
@@ -132,12 +208,11 @@ $(function(){
             if($('.stream-info').hasClass('config-on')){
                 $('.stream-info').show();
             }
-            
             if($('.goal').hasClass('config-on')){
                 $('.goal').show(); }
-            if($('#money-raised').hasClass('config-on')){
-                $('#money-raised').show()
-                console.log('showing .money-raised')
+            if($('.money-raised').hasClass('config-on')){
+                $('.money-raised').show()
+                
             }       
             }
         $('button.overlay-control').toggleClass('is-primary')
