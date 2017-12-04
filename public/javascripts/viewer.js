@@ -54,7 +54,6 @@ socket.on('toggle-goal', function(event){
 
 socket.on('toggle-stream-info', function(event){
     $('.stream-info').toggleClass('config-on');
-    $('.stream-info').toggleClass('box')
     if($('.stream-info').hasClass('config-on') && $('button.overlay-control').hasClass('is-primary')){
         $('.stream-info').show();
     }
@@ -101,7 +100,7 @@ $(function(){
             $('.stream-info').show();
         }
         else{
-            $('.streamer-info').hide();
+            $('.stream-info').hide();
         }
         if($('.goal').hasClass('config-on')){
             $('.goal').show(); }
@@ -122,7 +121,7 @@ $(function(){
         $('.timer').hide();
         $('#top-donors').hide();
         $('#recent-donors').hide();
-        $('stream-info').hide();
+        $('.stream-info').hide();
         $('.goal').hide();
     }
 
