@@ -18,7 +18,7 @@
           <div class="tile is-ancestor"  style="height: 100%">
 
             <div class ="tile is-vertical is-3 is-ancestor" style="height:20px">
-              <div class="tile timer is-child box" style="display:none;">
+              <div class="tile timer is-child box overlay">
                 <h2><b>Time Remaining:</b></h2>
                 <div id="timer"></div>
               </div>
@@ -27,18 +27,19 @@
             </div>
 
             <div class="tile is-vertical is-4" style="height: 100%">
-        
-              <div class="tile is-vertical is-parent overlay">
-                <div class="tile is-child box" style="display:none" id="money-raised">
-                    <p id="money-raised">Raised: $23,000.00</p>
-                </div>
-                <div class="tile is-child box" style="display:none" id="goal">
+                <div class="tile is-child goal">
                     <p id="goal"></p>
+               
+        
+                <div class="tile is-child box money-raised">
+                    <p id="money-raised"></p>
                 </div>
+
                 
                 
               </div>
             </div>
+
             <div class="tile is-parent is-5 is-vertical">
 
 
@@ -47,16 +48,17 @@
                 
               </div>
 
-
+              
               <div class="tile is-parent is-7 is-vertical">
                   <!-- stream overlay is default on -->
-                <button class="button overlay-control is-primary">Stream Overlay On</button>
-                <div class="tile is-child box donator-info" id="top-donors" style="display:none">
+                  <button class="button overlay-control">Stream Overlay Off</button>
+
+                <div class="tile is-child box donator-info overlay" id="top-donors" style="display:none">
                   <h2>Top Donors:</h2>
                 </div>
                 
-                <div class="tile is-child box donator-info" id="recent-donors" style="display:none">
-                <h2>Recent Donors</h2>
+                <div class="tile is-child box donator-info overlay" id="recent-donors" style="display:none">
+                <h2>Recent Donors:</h2>
                 </div>
               </div>
               </div>

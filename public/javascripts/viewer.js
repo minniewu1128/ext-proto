@@ -5,25 +5,25 @@ console.log('viewer connected', io)
 
 socket.on('toggle-timer', function(event){
     console.log('toggle timer event detected')
-    $('.timer').toggle();
+    $('.timer').toggleClass('config-on');
 
 })
 
 socket.on('toggle-money-raised', function(event){
     console.log('toggle money raised detected')
-    $('#money-raised').toggle();
+    $('#money-raised').toggleClass('config-on');
 })
 
 socket.on('toggle-top-donors', function(event){
-    $('#top-donors').toggle();
+    $('#top-donors').toggleClass('config-on');
 })
 
 socket.on('toggle-recent-donors', function(event){
-    $('#recent-donors').toggle();
+    $('#recent-donors').toggleClass('config-on');
 })
 
 socket.on('toggle-goal', function(event){
-    $('#goal').toggle();
+    $('#goal').toggleClass('config-on');
 })
 
 
@@ -41,6 +41,19 @@ socket.on('set-goal', function(event){
 })
 
 $(function(){
+    //assume overlay is off in the begging, hide all components
+    if($('button.overlay-control').hasClass('is-primary')){
+        if($('#money-raised').hasClass('config-on')){
+            $('.money-raised').show();
+        }
+        else{
+            $('.money-raised').hide();
+        }
+    }
+    else {
+        $('.money-raised').hide();
+    }
+
     
     socket.on('set-timer', function(event){
         console.log('dateTime', event.dateTime)
@@ -53,7 +66,6 @@ $(function(){
         url: "/scrape/https%3A%2F%2Fwww.crowdrise.com%2Finternational-day-of-the-girl",
         type: 'GET',
         success: function (result){
-            console.log(result.donors)
             // recent donors
             // design challenge: name is too long to display money quantity as well without interfering from the stream
 
@@ -87,23 +99,50 @@ $(function(){
                 
             }
 
+            // load initial money raised
+            $('#money-raised').text(`Amount Raised: ${result.amountRaised}`);
+
 
         }
     })
         
     
     $('button.overlay-control').click(function(event){
+        
         if($('button.overlay-control').hasClass('is-primary')){
             $('button.overlay-control').text('Stream Overlay: Off')
+            $('.donator-info').hide();
+            $('.timer').hide();
+            $('.stream-info').hide();
+            $('.goal').hide();
+            $('.money-raised').hide();
+            // $('.overlay').hide();
+            
         }
         else{
+            // turn on overlay
             $('button.overlay-control').text('Stream Overlay: On')
-        }
-        $('.donator-info').toggle();
-        $('.timer').toggle();
-        $('.overlay').toggle();
+            //only toggle components that have config-on class set by the streamer
+            if ($('.donator-info').hasClass('config-on')){
+                $('.donator-info').show();
+            }
+            if($('.timer').hasClass('config-on')){
+                $('.timer').show();
+            }
+            if($('.stream-info').hasClass('config-on')){
+                $('.stream-info').show();
+            }
+            
+            if($('.goal').hasClass('config-on')){
+                $('.goal').show(); }
+            if($('#money-raised').hasClass('config-on')){
+                $('#money-raised').show()
+                console.log('showing .money-raised')
+            }       
+            }
         $('button.overlay-control').toggleClass('is-primary')
-        $('.stream-info').toggle();
+
+        
     })
 })
 

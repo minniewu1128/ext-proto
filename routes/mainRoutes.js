@@ -32,8 +32,9 @@ scrape = function(req,res) {
     request(url, function(error, response, html){
        if(!error) {
             var $ = cheerio.load(html);
-            var donors
-            var json = {donors: []}
+            var donors;
+            var amountRaised = $('div#total_raised h3').text();
+            var json = {donors: [], amountRaised: amountRaised}
             namesSel = $('#donor_list span.left p')
             amountsSel = $('#donor_list span.right p')
             
