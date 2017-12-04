@@ -25,6 +25,16 @@ socket.on('toggle-recent-donors', function(event){
 socket.on('toggle-goal', function(event){
     $('#goal').toggle();
 })
+
+
+socket.on('set-stream-info', function(event){
+    $('#donate-to').text(`Donating at: ${event.donateTo}`);
+    $('#supporting').text(`Supporting: ${event.suporting}`);
+    $('#now').text(`Now: ${event.now}`);
+    $('#next').text(`Next: ${event.next}`)
+
+})
+
 $(function(){
     // make ajax request
     $('#timer').countdown('2017/12/15', function(event){

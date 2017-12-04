@@ -3,7 +3,34 @@ var streamer = io.connect('/streamer');
 console.log('streamer connected', streamer)
  
 $(function(){
-   $('button.timer').click(function(event){
+    $('button.set-stream-info').click(function(event){
+        // submit values from form
+        var donateTo = $('input.donate-to').val();
+        var supporting = $('input.supporting').val();
+        var now = $('input.now').val();
+        var next = $('input.next').val();
+        var streamInfo = {
+                            donateTo: donateTo,
+                            supporting: supporting,
+                            now: now,
+                            next: next   
+                            }
+        socket.emit('set-stream-info', streamInfo )
+
+    })
+
+    $('button.toggle-stream-info').click(function(event){
+        if($('button.toggle-stream-info').hasClass('is-primary')){
+            $('button.toggle-stream-info').text('Stream Information: Off')
+        }
+        else{
+            $('button.toggle-stream-info').text('Stream Information: On')
+        }
+        socket.emit('toggle-stream-info', {event: 'toggle stream'})
+        console.log('emitted toggle stream information event')
+    })
+
+    $('button.timer').click(function(event){
         
         if($('button.timer').hasClass('is-primary')){
            // timer is on

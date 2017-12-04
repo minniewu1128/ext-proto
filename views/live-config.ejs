@@ -7,72 +7,168 @@
     <body>
         <div class = "container">
             <div class = "tile is-ancestor">
-                <div class = "tile is-6 is-child is-vertical box">
+                <div class = "tile is-child is-vertical box">
                     <!-- <div class="field">
                         <div class="control">
                             <button class="button progress-bar">Progress Bar: Off</button>
                         </div>
                     </div> -->
-                    <div class="field">
-                        <div class="control">
-                            <button class="button timer">Timer: Off</button>
+                    
+                    <!-- timer controls -->
+                    <div class='timer'>
+                        <h2 class="has-text-centered is-size-5"><b>Countdown Timer</b></h2>
+                        <div class="field has-addons">
+                            <p class='control'>
+                                <a class='button is-static'>End Date/Time</a>
+                            </p>
+                            <div class="control is-expanded">       
+                                <input class="input time-select" placeholder="yyyy-MM-dd-hh-mm">
+                            </div>
+                        </div>
+                   
+                                     
+                        <div class="field is-grouped is-grouped-centered">
+                            <div class="control">
+                                <button class="button set-timer">Set End time</button>
+                            </div>                            
+                            
+                            <div class="control">
+                                    <button class="button timer">Timer: Off</button>
+                            </div>
+
                         </div>
                     </div>
+                    <!-- close timer controls -->                    
+                    <br/>
+                    
+                    <!-- goal controls -->
+                    <div class='goal'>
+                        <h2 class="has-text-centered is-size-5"><b>Donation Goal</b></h2>
+                        <div class="field has-addons">
+                            <p class='control'>
+                                <a class="button is-static">Donation Goal</a>
+                            </p>
+                                <div class="control is-expanded">
+                                <input class="input" placeholder="e.g. $25000">
+                            </div>   
+                        </div>
+                    
+                        <div class='field'>
+                            <div class="field is-grouped is-grouped-centered">
+                                <div class="control">
+                                    <button class="button set-goal">Set Goal</button>
+                                </div>
+                                <div class="control">
+                                    <button class="button goal">Goal: Off</button>
+                                </div>
+    
+                            </div>                        
+                        </div>
+
+                    </div>
+                    <!-- close goal controls -->
+
+                    <br/>
+                    
+                    <!-- money raised controls -->
+                    <div class="money-raised">
+                        <h2 class="has-text-centered is-size-5"><b>Money Raised</b></h2>
+                        <div class="field is-grouped is-grouped-centered">
+                            <div class="control">                  
+                                <button class="button money-raised">Money Raised: Off</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- close money raised controls -->
+
                     <br/>
 
-                    <div class="field has-addons is-grouped-centered">
-                            <div class="control">
-                               <button class="button goal">Goal: Off</button>
-                           </div>
-                           <div class="control">
-                               <input class="input" placeholder="e.g. $25000">
+                    <!-- top donors controls -->
+                    <div class="top-donors">
+                        <h2 class="has-text-centered is-size-5"><b>Top Donors</b></h2>
+                        <div class='field is-grouped is-grouped-centered'>
+                            <div class="control">              
+                                <button class="button top-donors">Top Donors: Off</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- close top donors controls -->
+
+                    <br/>
+                    <!-- recent donors controls -->
+                    <div class="recent-donors">
+                        <h2 class="has-text-centered is-size-5"><b>Recent Donors</b></h2>
+                        <div class='field is-grouped is-grouped-centered'>
+                                <div class="control">   
+                                    <button class="button recent-donors">Recent Donations: Off</button>
+                                </div>
+                        </div>
+                    </div>
+                    <!-- close recent donors controls -->
+
+                    <br/>
+                    
+                    <!-- stream intro controls -->
+                    <div class="stream-info">
+                        <h2 class="has-text-centered is-size-5"><b>Stream Information</b></h2>
+                        <div class='field has-addons'>
+                            <p class="control">
+                                <a class='button is-static'>Donating at:</a>
+                            </p>
+                            <div class='control is-expanded'>     
+                               <input class="input stream-info donate-to" placeholder="https://www.xyz.com">
+                            </div>
+                        </div>
+                        <div class="field has-addons">
+                            <p class="control">
+                                <a class='button is-static'>Supporting:</a>
+                            </p>
+
+                            <div class="control is-expanded">
+                               <input class='input stream-info supporting' placeholder='XYZ Foundation'>
+                            </div>
+                        </div>
+                        
+                        <div class='field has-addons'>
+                            <p class="control">
+                                <a class='button is-static'>Now:</a>
+                            </p>
+
+                            <div class="control is-expanded">
+                                <input class='input stream-info now' placeholder="What are you doing on stream?">
                             </div>
                         
-                    </div>
-                    <br/>
-
-                    <div class="field">
-                         <div class="control">
-                            <button class="button money-raised">Money Raised: Off</button>
                         </div>
-                    </div>
-                    <br/>
-                    
-                    <div class='field'>
-                        <div class="control">
-                            <button class="button top-donors">Top Donors: Off</button>
+                        
+                        <div class='field has-addons'>
+                            <p class="control">
+                                <a class='button is-static'>Next:</a>
+                            </p>
+                            <div class="control is-expanded">
+                                <input class='input stream-info next ' placeholder="What are you doing on stream?">
+                            </div>
                         </div>
-                    </div>
-                    <br/>
-                    
-                    <div class='field-group'>
-                            <div class="control">
-                                <button class="button stream-information">Stream Information: Off</button>                                              
+    
+                            <div class='field is-grouped is-grouped-centered'>
+                                <div class="control">
+                                    <button class="button set-stream-info">Set Stream Information</button>                                              
+                                </div>
+        
+                                <div class="control">
+                                    <button class="button toggle-stream-info">Stream Information: Off</button>                                              
+                                </div>
                             </div>
-                            
-                            <div class='control'>     
-                               Donate to: <input class="input" placeholder="https://www.xyz.com">
-                            </div>
-
-                            <div class="control">
-                                Supporting: <input class='input' placeholder='XYZ Foundation'>
-                            </div>
-
-                            <div class="control">
-                                Supporting: <input class='input' placeholder='XYZ Foundation'>
-                            </div>
-
-                            <div class="control">
-                                Now: <input class='input' placeholder="What are you doing on stream?">
-                            </div>
-                    </div>
-                    <br/>
-
-                    <div class='field'>
-                        <div class="control">
-                            <button class="button recent-donors">Recent Donations: Off</button>
+    
+                                
                         </div>
+
                     </div>
+                    <!-- close stream info controls -->
+
+                    <br/>
+
+
 
 
                 </div>

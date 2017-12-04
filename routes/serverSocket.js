@@ -36,6 +36,12 @@ exports.init = function(io) {
             */
             socket.broadcast.emit('users_connected', {number: currentUsers});
 
+            socket.on('set-stream-info', function(data){
+                console.log('server received event to set stream information', data)
+                socket.emit('set-stream-info', data);
+                socket.broadcast.emit('set-stream-info', data);
+            })
+            
             socket.on('toggle-timer', function(data){
                 console.log('toggle timer in io.sockets', data.event)
                 // emit event to viewer
