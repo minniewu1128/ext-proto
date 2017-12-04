@@ -5,7 +5,7 @@ console.log('viewer connected', io)
 
 socket.on('toggle-timer', function(event){
     console.log('toggle timer event detected')
-    $('#timer').toggle();
+    $('.timer').toggle();
 
 })
 
@@ -27,6 +27,7 @@ socket.on('toggle-goal', function(event){
 })
 
 
+
 socket.on('set-stream-info', function(event){
     $('#donate-to').text(`Donating at: ${event.donateTo}`);
     $('#supporting').text(`Supporting: ${event.suporting}`);
@@ -35,11 +36,19 @@ socket.on('set-stream-info', function(event){
 
 })
 
+socket.on('set-goal', function(event){
+    $('#goal').text(`Goal: $${event.goal}`)
+})
+
 $(function(){
-    // make ajax request
-    $('#timer').countdown('2017/12/15', function(event){
-        $(this).html(event.strftime('%w weeks %d days %H:%M:%S'));
+    
+    socket.on('set-timer', function(event){
+        console.log('dateTime', event.dateTime)
+        $('#timer').countdown(event.dateTime, function(e){
+            $(this).html(e.strftime('%-w w, %-d d,  %-H:%M:%S'));
+        })
     })
+    // make ajax request
     $.ajax({
         url: "/scrape/https%3A%2F%2Fwww.crowdrise.com%2Finternational-day-of-the-girl",
         type: 'GET',
@@ -94,6 +103,7 @@ $(function(){
         $('.timer').toggle();
         $('.overlay').toggle();
         $('button.overlay-control').toggleClass('is-primary')
+        $('.stream-info').toggle();
     })
 })
 

@@ -3,6 +3,7 @@ var streamer = io.connect('/streamer');
 console.log('streamer connected', streamer)
  
 $(function(){
+    
     $('button.set-stream-info').click(function(event){
         // submit values from form
         var donateTo = $('input.donate-to').val();
@@ -17,6 +18,17 @@ $(function(){
                             }
         socket.emit('set-stream-info', streamInfo )
 
+    });
+
+    $('button.set-goal').click(function(event){
+        var g = $('input.goal').val();
+        socket.emit('set-goal', {goal: g})
+    })
+
+    $('button.set-timer').click(function(event){
+        var dateTime = $('input.time-select').val();
+        socket.emit('set-timer', {dateTime: dateTime});
+        console.log('emitted set timer event')
     })
 
     $('button.toggle-stream-info').click(function(event){
