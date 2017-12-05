@@ -2,6 +2,7 @@
 var socket = io.connect('/')
 var viewer = io.connect('/viewer')
 console.log('viewer connected', io)
+var tDonors;
 
 socket.on('toggle-timer', function(event){
     console.log('toggle timer event detected')
@@ -76,6 +77,8 @@ socket.on('set-goal', function(event){
 })
 
 $(function(){
+
+    
     //assume overlay is off in the begging, hide all components
     if($('button.overlay-control').hasClass('is-primary')){
         if ($('#top-donors').hasClass('config-on')){
@@ -156,6 +159,7 @@ $(function(){
                 j++;
             }
             console.log('top_donors', top_donors)
+            updateTopDonors(top_donors)
             for(var i=0; i< 5; i++){
                 var recent_donors = `<p>
                         ${result.donors[i].name}
@@ -163,6 +167,7 @@ $(function(){
                         `
                 $('#recent-donors').append(recent_donors);
 
+                var top_donators_abbrev = top_donors.donors[i].name.slice(0,3) + '.'
                 var top_donators = `<p>
                                     ${top_donors.donors[i].name}: ${top_donors.donors[i].amount}
                                   </p>`
@@ -188,7 +193,6 @@ $(function(){
             $('.stream-info').hide();
             $('.goal').hide();
             $('.money-raised').hide();
-            // $('.overlay').hide();
             
         }
         else{
@@ -235,15 +239,6 @@ function getTopDonations(json) {
     }
     var sorted = toSort.sort(function(a, b){return b-a});
     var topDonors = []
-    // go through sorted list to find donors with the highest matching donation numbers
-    // for (var j=0; j<5; j++){
-    //     for (var h=0; h<json.donors.length; h++){
-    //         if(json.donors[h].amount.slice(1) == sorted[j]){
-    //             topDonors.push(json.donors[h])
-    //         }
-            
-    //     }
-    // }
     return sorted
 }
 
@@ -255,6 +250,8 @@ function inTopDonors(top_donors, name){
     }
     return false
 }
-// var td = {donors:[{name: 'hi', amount: '$50'},
-//                    {name: 'minnie', amount: '$20'}]}
-// console.log("testing inTopDonors", inTopDonors(td, 'minnie'))
+
+function updateTopDonors(donors){
+    tDonors = donors;
+    console.log('top donors now in global', tDonors);
+}
