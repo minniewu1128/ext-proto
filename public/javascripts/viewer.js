@@ -3,6 +3,30 @@ var socket = io.connect('/')
 var viewer = io.connect('/viewer')
 console.log('viewer connected', io)
 var tDonors;
+var tag = document.createElement('script');
+console.log('script')
+tag.src = "http://www.youtube.com/iframe_api";
+
+var firstScriptTag = document.getElementsByTagName('script')[0];
+
+firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);
+// // 3. This function creates and <iframe> and YouTube player after API code downloads
+var player;
+
+function onYouTubeIframeAPIReady() {
+    console.log('youtube iframe ready')
+    player = new YT.Player('player', { 
+        events: {
+            'onReady': onPlayerReady,
+        }
+    });
+}
+
+
+
+function onPlayerReady(event) {
+    event.target.playVideo();
+}
 
 socket.on('toggle-timer', function(event){
     console.log('toggle timer event detected')
@@ -66,7 +90,7 @@ socket.on('toggle-stream-info', function(event){
 
 socket.on('set-stream-info', function(event){
     $('#donate-to').text(`Donating at: ${event.donateTo}`);
-    $('#supporting').text(`Supporting: ${event.suporting}`);
+    $('#supporting').text(`Supporting: ${event.supporting}`);
     $('#now').text(`Now: ${event.now}`);
     $('#next').text(`Next: ${event.next}`)
 
@@ -77,7 +101,6 @@ socket.on('set-goal', function(event){
 })
 
 $(function(){
-
     
     //assume overlay is off in the begging, hide all components
     if($('button.overlay-control').hasClass('is-primary')){
@@ -181,7 +204,6 @@ $(function(){
 
         }
     })
-        
     
     $('button.overlay-control').click(function(event){
         // if overlay is on, clicking it turns it off and hides everything
@@ -221,8 +243,8 @@ $(function(){
         $('button.overlay-control').toggleClass('is-primary')
 
         
-    })
-})
+    });
+});
 
 function getTopDonations(json) {
     var toSort = []
@@ -248,10 +270,10 @@ function inTopDonors(top_donors, name){
             return true
         }
     }
-    return false
+    return false;
 }
 
 function updateTopDonors(donors){
     tDonors = donors;
     console.log('top donors now in global', tDonors);
-}
+};
